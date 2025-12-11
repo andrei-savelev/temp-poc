@@ -1,5 +1,5 @@
 import { DemoProps } from '../types';
-import { getNounWithCount, articleLemma, replyLemma } from '../russianNouns';
+import { getNounWithCount, getNounWithCountAndCase, articleLemma, replyLemma, Case } from '../russianNouns';
 import TextBlock from './TextBlock';
 
 const RussianNounsDemo: React.FC<DemoProps> = ({
@@ -15,6 +15,19 @@ const RussianNounsDemo: React.FC<DemoProps> = ({
   const scenario2 = `Восстановить 1 ${scenario2Noun}?`;
   const scenario3Noun = getNounWithCount(articleLemma, 3);
   const scenario3 = `Восстановить 3 ${scenario3Noun}?`;
+  const scenario4 = 'Восстановить все статьи';
+  const scenario5 = 'Восстановить статью';
+
+  // Complex multi-noun scenarios with explicit case control
+  const buildComplexScenario = (count: number) => {
+    const articleAccusative = getNounWithCountAndCase(articleLemma, count, Case.ACCUSATIVE);
+    const replyGenitive = getNounWithCountAndCase(replyLemma, count, Case.GENITIVE);
+    return `Восстановить ${count} ${articleAccusative} и к тому же посмотреть ${count} ${replyGenitive} из общего числа и ответить на ${count} ${replyGenitive}`;
+  };
+
+  const scenario6 = buildComplexScenario(1);
+  const scenario7 = buildComplexScenario(2);
+  const scenario8 = buildComplexScenario(5);
 
   // Author attribution with gender-based verb
   const createdVerb = authorGender === 'male' ? 'Создал' : 'Создала';
@@ -30,6 +43,11 @@ const RussianNounsDemo: React.FC<DemoProps> = ({
       <TextBlock label="Сценарий 1" text={scenario1} />
       <TextBlock label="Сценарий 2" text={scenario2} />
       <TextBlock label="Сценарий 3" text={scenario3} />
+      <TextBlock label="Сценарий 4" text={scenario4} />
+      <TextBlock label="Сценарий 5" text={scenario5} />
+      <TextBlock label="Сценарий 6" text={scenario6} />
+      <TextBlock label="Сценарий 7" text={scenario7} />
+      <TextBlock label="Сценарий 8" text={scenario8} />
       <TextBlock label="Авторство" text={authorText} />
       <TextBlock label="Просмотр ответов" text={replyText} />
     </div>
