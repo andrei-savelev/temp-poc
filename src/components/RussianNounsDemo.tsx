@@ -9,7 +9,8 @@ const RussianNounsDemo: React.FC<DemoProps> = ({
   dateTime
 }) => {
   // Three static article restoration scenarios
-  const scenario1 = `Восстановить 6 из 11 статей?`;
+  const scenario1Noun = getNounWithCount(articleLemma, 6);
+  const scenario1 = `Восстановить 6 из 11 ${scenario1Noun}?`;
   const scenario2Noun = getNounWithCount(articleLemma, 1);
   const scenario2 = `Восстановить 1 ${scenario2Noun}?`;
   const scenario3Noun = getNounWithCount(articleLemma, 3);
