@@ -1,0 +1,63 @@
+# GitLab CI/CD Pipeline for React/Vite Application
+# Deploys to GitLab Pages
+
+image: node:20
+
+stages:
+  - deps
+  - build
+  - publish
+
+# Cache node_modules for faster builds
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+# Job 1: Install Dependencies
+install_deps:
+  stage: deps
+  script:
+    - echo "Installing dependencies..."
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+
+# Job 2: Build Application
+build_app:
+  stage: build
+  needs:
+    - install_deps
+  script:
+    - echo "Building React application with Vite..."
+    - npm run build
+    - echo "Build complete. Contents of dist directory:"
+    - ls -la dist/
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+
+# Job 3: Deploy to GitLab Pages
+pages:
+  stage: publish
+  needs:
+    - build_app
+  script:
+    - echo "Preparing GitLab Pages deployment..."
+    - rm -rf public
+    - mkdir -p public
+    - mv dist/* public/
+    - echo "Contents of public directory:"
+    - ls -la public/
+    - echo "Pages will be accessible at ${CI_PAGES_URL}"
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 week
+  only:
+    - master
