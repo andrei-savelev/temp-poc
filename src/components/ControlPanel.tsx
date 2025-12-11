@@ -22,6 +22,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           value={articleCount}
           onChange={(e) => onArticleCountChange(parseInt(e.target.value))}
         />
+        <div className="preset-buttons">
+          <button onClick={() => onArticleCountChange(1)}>1</button>
+          <button onClick={() => onArticleCountChange(3)}>3</button>
+          <button onClick={() => onArticleCountChange(11)}>11</button>
+        </div>
       </div>
 
       <div className="control-group">

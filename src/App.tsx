@@ -12,7 +12,7 @@ function App() {
   const [authorGender, setAuthorGender] = useState<Gender>('male');
 
   const totalArticles = 11;
-  const authorName = 'Андрей Савельев';
+  const authorName = authorGender === 'male' ? 'Андрей Савельев' : 'Наталья Николаева';
   const dateTime = '15 июля 2025 в 12:43';
 
   return (

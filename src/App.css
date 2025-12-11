@@ -125,6 +125,32 @@ header h1 {
   accent-color: #646cff;
 }
 
+.preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.preset-buttons button {
+  padding: 0.4rem 1rem;
+  background: #333;
+  color: #fff;
+  border: 1px solid #646cff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.preset-buttons button:hover {
+  background: #646cff;
+  transform: translateY(-1px);
+}
+
+.preset-buttons button:active {
+  transform: translateY(0);
+}
+
 .comparison-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -210,5 +236,15 @@ header h1 {
 
   .control-group input[type="range"] {
     background: #e0e0e0;
+  }
+
+  .preset-buttons button {
+    background: #f0f0f0;
+    color: #213547;
+  }
+
+  .preset-buttons button:hover {
+    background: #646cff;
+    color: #fff;
   }
 }
