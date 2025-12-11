@@ -1,8 +1,6 @@
 export type Gender = 'male' | 'female';
 
 export interface AppState {
-  articleCount: number;
-  totalArticles: number;
   replyCount: number;
   authorGender: Gender;
   authorName: string;
@@ -10,8 +8,6 @@ export interface AppState {
 }
 
 export interface DemoProps {
-  articleCount: number;
-  totalArticles: number;
   replyCount: number;
   authorGender: Gender;
   authorName: string;
@@ -19,10 +15,8 @@ export interface DemoProps {
 }
 
 export interface ControlPanelProps {
-  articleCount: number;
   replyCount: number;
   authorGender: Gender;
-  onArticleCountChange: (count: number) => void;
   onReplyCountChange: (count: number) => void;
   onGenderChange: (gender: Gender) => void;
 }
